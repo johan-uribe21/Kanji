@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import CardList from './CardList.js';
+import SearchBox from './SearchBox.js';
 import './App.css';
 
-const state = {
+var fetch = require("node-fetch");
 
-};
+// first version of game will just be a set of flashcards used to study.
+// add support for hiragana in next version
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
-      wordList: ['dog', 'cat', 'rain', 'car'], // default list of kanji wordList used for matching game
+      wordList: [], // list of kanji wordList used for matching game
+      kanjiList: [],
       inputField: '', // the user input used to populate the 'wordList' array
       timeElapsed: 0, // the amount of time elapsed since user started game
       correctMatches: 0, // the number of correct matches so far
@@ -25,10 +28,29 @@ class App extends Component {
     this.setState({ inputField: event.target.value }); 
   }
 
-  render() {
-    const {wordList, inputField, timeElapsed, correctMatches} = this.state;
-    // somewhere I must give user an option to remove wordList from wordList
+componentDidMount(){
+    // fetch kanji, parse the json, then update the state with hew word-kanji pairs
+    const defaultWords = ['dog','cat','bird', 'cow'];
+    this.setState({wordList: defaultWords});
+    const fetchedKanji = [];
+    
+    // this promise.all is not working properly
+    Promise.all( // waits until all promises are completed
+      defaultWords.map(word => { // creates new array three promises for each word in wordList
+        return fetch (`https://kanjialive-api.p.rapidapi.com/api/public/search/${word}` 
+          ,{headers:{"X-RapidAPI-Key": "248efa6aa8msh5005b7a79ccea0ap133b74jsn6fc7e3d0b298"}})
+          .then(response => response.json() ) // parses then pushes each character to array
+          .then(myJSON => fetchedKanji.push(myJSON[0].kanji.character ))
+      })
+    )
+    .then( () => this.setState({kanjiList: fetchedKanji})) // updates state with fetchedKanji
+    .catch(error => console.log(error))
+  }
 
+  render() {
+    const {wordList,kanjiList} = this.state;
+    // somewhere I must give user an option to remove wordList from wordList
+    
     // a const here that pushes new inputs from onInputChange to wordList, and removes others.
     // not sure how or where to do this.
 
@@ -37,7 +59,8 @@ class App extends Component {
       (
         <div className="tc">
           <h1 className='f2'>Kanji Match</h1>
-          <CardList wordList = {wordList} />
+          <SearchBox searchChange = {this.onInputChange}/>
+          <CardList wordList = {wordList} kanjiList = {kanjiList}/>
         </div>
       );
   }
