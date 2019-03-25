@@ -1,11 +1,16 @@
 import React from 'react';
 
-const SearchBox = ( {click}) => {
+const SearchBox = ( {click, keypress}) => {
   return (
     <div className = 'pa3 ba b--green bg-lightest-blue'>
       {'Enter Additional Kanji:'}
       <br/>
-      <input id="inputKanji" type="text" size="20"/>
+      <input 
+        id="inputKanji" 
+        ype="text" 
+        size="20"
+        onKeyPress = {keypress}
+        />
       <br/>
       <button 
         type="button" 
