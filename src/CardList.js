@@ -1,19 +1,19 @@
 import React from 'react';
-import Card from './Card.js';
+import Kanji from './Kanji.js';
 
 // Need to use the fetch call in app.js to update wordList with the characters. 
 // wordList and kanjiList are both arrays.
 // Make them an array filled with objects eventually.
-const CardList = ({wordList, kanjiList}) => {
+const CardList = ({kanjiList}) => {
   return (
     <div>
       {
-        wordList.map( (word, i) => {
+        kanjiList.map( (word, i) => {
           return (
-            <Card // passes these vales to Card component to build
+            <Kanji // passes these vales to Kanji component to build
               key = {i}
-              word = {wordList[i]}
-              kanji = {kanjiList[i]}
+              word = {kanjiList[i].word}
+              kanji = {kanjiList[i].kanji}
             />
           );
         })
