@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import CardList from './CardList.js'
 
-const state = {
 
-};
 
 class App extends Component {
   constructor(){
