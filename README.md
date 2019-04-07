@@ -1,3 +1,7 @@
+## Summary
+
+Starting with a small default list of words, this application allows users to add additional words to their vocabularly-study list, and automatically generates cards for each word in the study list. Each card contains the Japanese kanji character and the english word. Additional cards are rendered as users add words to their study list. Working on transforming the study list into a matching game, where plays must match the english word to the japanese character card. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
