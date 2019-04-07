@@ -12,14 +12,41 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      wordList: ['dog','cat','bird', 'cow'], // default list of kanji wordList 
+      wordList: [],
+      defaultList : ['dog','cat','bird', 'cow'], // default list of kanji wordList 
       kanjiList: [], // array of objects containing word and kanji pairs
       inputField: [], // the user input used to populate the 'wordList' array
       timeElapsed: 0, // the amount of time elapsed since user started game
       correctMatches: 0, // the number of correct matches so far
+      isLoaded: false,
     }
+
+    // binds the method so that this always refers to app class
+    this.callAPI = this.callAPI.bind(this);
+    this.populateInitialList = this.populateInitialList.bind(this);
   };
   
+  populateInitialList() {
+    const responses = [];
+    this.state.defaultList.forEach(async (item) => {
+      const response = await this.callAPI(item);
+
+      responses.push({
+        word: item,
+        kanji: response[0].kanji.character
+      });
+    });
+
+    this.setState({
+      ...this.state,
+      isLoaded: true,
+      wordList: [
+        ...this.state.wordList,
+        responses,
+      ],
+    });
+  };
+
   // updates state to remove cards when remove button is clicked
   onClickDelete = (e) => {
     const newWordList = [...this.state.wordList]
@@ -30,6 +57,8 @@ class App extends Component {
     newKanjiList.splice(kanjiIndex,1)
     this.setState({wordList: newWordList, kanjiList: newKanjiList})
   }
+
+  // create a submitWord method, and call it in the other methods
 
   // adds kanji card when users press enter with something in the textbox
   onKeyPress = (event) => {
@@ -56,37 +85,59 @@ class App extends Component {
     this.fetchKanji();
   }
 
-  fetchKanji = () => {
-    const fetchedKanji = [];
-    // loops over default words, creates promise for each, parses jason, then stores in array
-    Promise.all( // waits until all promises are completed
-      this.state.wordList.map((word, i) => { // creates new array three promises for each word in wordList
-        return fetch (`https://kanjialive-api.p.rapidapi.com/api/public/search/${word}` 
+  callAPI(word) {
+    return fetch (`https://kanjialive-api.p.rapidapi.com/api/public/search/${word}` 
         ,{headers:{"X-RapidAPI-Key": "248efa6aa8msh5005b7a79ccea0ap133b74jsn6fc7e3d0b298"}})
         .then(response => response.json() ) // parses then pushes each character to array
-        .then(myJSON => {
-          fetchedKanji.push( {word: this.state.wordList[i] ,kanji: myJSON[0].kanji.character} )
-          })
-          .catch(error => {
-            const oldWorldList = [...this.state.wordList]
-            oldWorldList.pop()
-            this.setState( {wordList: oldWorldList})
-            alert(`"${word}" is not included in the list of common kanji. Try another word.`)
-          })
-        })
-    )
-      .then( () => this.setState({kanjiList: fetchedKanji})) // updates state with fetchedKanji
-      .catch(error => console.log(error))
+    //     .then(myJSON => {
+    //       this.setState({
+    //         ...this.state,
+    //         kanjiList: [...this.state.kanjiList, myJSON[0].kanji.character]
+    //         console.log()
+            
+    //       })
+    //       fetchedKanji.push( {word: this.state.wordList[i] ,kanji: myJSON[0].kanji.character} )
+    //       })
+    //       .catch(error => {
+    //         const oldWorldList = [...this.state.wordList]
+    //         oldWorldList.pop()
+    //         this.setState( {wordList: oldWorldList})
+    //         alert(`"${word}" is not included in the list of common kanji. Try another word.`)
+    //       })
+    //     })
+    // console.log(word);
   };
+
+  // fetchKanji = () => {
+  //   const fetchedKanji = [];
+  //   // loops over default words, creates promise for each, parses jason, then stores in array
+  //   Promise.all( // waits until all promises are completed
+  //     this.state.wordList.map((word, i) => { // creates new array three promises for each word in wordList
+  //       return fetch (`https://kanjialive-api.p.rapidapi.com/api/public/search/${word}` 
+  //       ,{headers:{"X-RapidAPI-Key": "248efa6aa8msh5005b7a79ccea0ap133b74jsn6fc7e3d0b298"}})
+  //       .then(response => response.json() ) // parses then pushes each character to array
+  //       .then(myJSON => {
+  //         fetchedKanji.push( {word: this.state.wordList[i] ,kanji: myJSON[0].kanji.character} )
+  //         })
+  //         .catch(error => {
+  //           const oldWorldList = [...this.state.wordList]
+  //           oldWorldList.pop()
+  //           this.setState( {wordList: oldWorldList})
+  //           alert(`"${word}" is not included in the list of common kanji. Try another word.`)
+  //         })
+  //       })
+  //   )
+  //     .then( () => this.setState({kanjiList: fetchedKanji})) // updates state with fetchedKanji
+  //     .catch(error => console.log(error))
+  // };
 
   componentDidMount(){
     // calls fetchKanji to do the initial set state and render for default display
-    this.fetchKanji();  
+    //this.fetchKanji();  
+    this.populateInitialList();
   }
 
   render() {
-
-    const {wordList,kanjiList} = this.state;
     // somewhere I must give user an option to remove wordList from wordList
     
     // a const here that pushes new inputs from onInputChange to wordList, and removes others.
@@ -95,8 +146,8 @@ class App extends Component {
     return (
         <div className="tc">
           <h1 className='f1'>Kanji Match</h1>
-          <SearchBox click = {this.onClickAdd} keypress = {this.onKeyPress}/>
-          <CardList kanjiList = {kanjiList} onClickDelete = {this.onClickDelete}/>
+          <SearchBox callAPI = {this.callAPI} />
+          <CardList wordList = {this.state.wordList} onClickDelete = {this.onClickDelete} isLoaded={this.state.isLoaded} />
         </div>
       );
   }
