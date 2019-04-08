@@ -27,25 +27,24 @@ class App extends Component {
   };
   
   populateInitialList() {
-    const responses = [];
     this.state.defaultList.forEach(async (item) => {
-      const response = await this.callAPI(item);
+        await this.callAPI(item).then((res) => {
+          this.setState({ wordList: [
+            ...this.state.wordList,
+            {
+              word: item,
+              kanji: res[0].kanji.character
+            },
+          ],
+        });
+    })
 
-      responses.push({
-        word: item,
-        kanji: response[0].kanji.character
       });
-    });
 
-    this.setState({
-      ...this.state,
-      isLoaded: true,
-      wordList: [
-        ...this.state.wordList,
-        responses,
-      ],
-    });
-  };
+      this.setState({
+        isLoaded: true,
+      });
+  }
 
   // updates state to remove cards when remove button is clicked
   onClickDelete = (e) => {
