@@ -5,10 +5,15 @@ import Kanji from './Kanji.js';
 // wordList and kanjiList are both arrays.
 // Make them an array filled with objects eventually.
 const CardList = ({wordList, onClickDelete, isLoaded}) => {
-  console.log(wordList);
+  const list = wordList || []
+
   return (
     <div>
-      {JSON.stringify(wordList[0], null, 2)}
+      {
+        list.length > 0 ? wordList.map((char, idx) => {
+            return <Kanji key={idx} word={char.word} kanji={char.kanji} onClickDelete={onClickDelete}/>
+        }) : (<span>I got nothing</span>)
+      }
     </div>
   );
 };
