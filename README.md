@@ -1,6 +1,17 @@
-## Summary
+## Goal
+The application is a Japanese-language study application that (will eventually) allow users to submit a list of vocabulary words they want to practice and then provides several games and study resources for the user to practice their vocabulary list. 
 
-Starting with a small default list of words, this application allows users to add additional words to their vocabularly-study list, and automatically generates cards for each word in the study list. Each card contains the Japanese kanji character and the english word. Additional cards are rendered as users add words to their study list. Working on transforming the study list into a matching game, where plays must match the english word to the japanese character card. 
+## Current Status
+Currently the application provides a default list of study cards, each containing the vocabulary word in English as well as the associated Japanese character. The cards are generated through a fetch request to a publicly available API that takes words and returns the Japanese character. The application also allows the user to submit additional words in English and then automatically generates new study cards for each word. Users may also delete study cards. All study cards are displayed on the screen. This application was built using JavaScript and React, with Tachyons for styling. 
+
+## Code 
+With this application I paid careful attention to building out the React components using controlled components and very granular method calls with good separation of concerns. The code on this project is far more readable and simple than in my previous projects. Although I am not using any fancy technologies here, this project is a better representation of my progression as a developer who can write readable, efficient and extensible code. In particular, the asynchronous API calls proved to be a challenge, and I learned a lot in order to overcome that challenge. 
+
+## Ongoing Extensions 
+
+The next step of this application is to add a game option. If the user does not want to simply read through the study cards, the user can pick a “memorization game” option, where each study card is separated into two cards: one card with the English word, and the other with the Japanese character. Then all cards are shuffled and flipped over. The user must then flip over pairs of cards until they find matching pairs. The game is timed, and the specific vocabulary list and time to completion are stored for that user, which will allow the user to easily reload old study lists and attempt to beat their time. 
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
