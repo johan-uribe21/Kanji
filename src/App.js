@@ -17,7 +17,7 @@ class App extends Component {
       isLoaded: false,
     }
 
-    // binds the method so that 'this' always refers to app class
+    // binds the method so that 'this' always refers to app class. Better than arrow functions.
     this.callAPI = this.callAPI.bind(this);
     this.populateInitialList = this.populateInitialList.bind(this);
     this.submitWord = this.submitWord.bind(this);
@@ -87,7 +87,11 @@ class App extends Component {
         <div className="tc">
           <h1 className='f1'>Kanji Match</h1>
           <SearchBox submitWord = {this.submitWord} />
-          <CardList wordList = {this.state.wordList} onClickDelete = {this.onClickDelete} isLoaded={this.state.isLoaded} />
+          <CardList 
+            wordList = {this.state.wordList} 
+            onClickDelete = {this.onClickDelete} 
+            isLoaded={this.state.isLoaded} 
+          />
         </div>
       );
   }

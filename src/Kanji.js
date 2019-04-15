@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Kanji = ({id, word, kanji, onClickDelete}) => {
+const Kanji = ({word, kanji, onClickDelete}) => {
   return (
     <div className = 'tc bg-light-green dib br3 pa3 ma2 shadow-hover bw2 shadow-5'>
         <h2 className = 'f1'>{kanji}</h2>
