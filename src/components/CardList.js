@@ -7,7 +7,7 @@ const CardList = ({wordList, onClickDelete, isLoaded}) => {
   return (
     <div>
       {
-        list.length > 0 ? 
+        list.length > 0 ? // ternary operator
         wordList.map((char, idx) => {
             return <Kanji 
               key={idx} 

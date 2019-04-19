@@ -11,7 +11,7 @@ class SearchBox extends React.Component  {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // updates the input field as the user types into input
+  // updates the input field as the user types into input, and turns form into a controlled component.
   handleChange = (event) => {
     this.setState({input: event.target.value});
   };
@@ -19,7 +19,7 @@ class SearchBox extends React.Component  {
   handleSubmit(event) {
     event.preventDefault();
     this.props.submitWord(this.state.input);
-    this.setState({input: ''});
+    this.setState({input: ''}); // resets the state.input value which resets the rendered value in input box
   };
 
   render() {
