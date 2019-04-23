@@ -1,0 +1,202 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBox render expect to render SearchBox component 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SearchBox />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <label>
+          Additional Vocabulary Words:
+          <input
+            id="inputKanji"
+            onChange={[Function]}
+            size="20"
+            type="text"
+            value=""
+          />
+        </label>,
+        <input
+          type="submit"
+          value="submit"
+        />,
+      ],
+      "className": "pa3 ba b--green bg-lightest-blue",
+      "id": "SearchBox",
+      "onSubmit": [Function],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            "Additional Vocabulary Words:",
+            <input
+              id="inputKanji"
+              onChange={[Function]}
+              size="20"
+              type="text"
+              value=""
+            />,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          "Additional Vocabulary Words:",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "id": "inputKanji",
+              "onChange": [Function],
+              "size": "20",
+              "type": "text",
+              "value": "",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "input",
+          },
+        ],
+        "type": "label",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "type": "submit",
+          "value": "submit",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "input",
+      },
+    ],
+    "type": "form",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <label>
+            Additional Vocabulary Words:
+            <input
+              id="inputKanji"
+              onChange={[Function]}
+              size="20"
+              type="text"
+              value=""
+            />
+          </label>,
+          <input
+            type="submit"
+            value="submit"
+          />,
+        ],
+        "className": "pa3 ba b--green bg-lightest-blue",
+        "id": "SearchBox",
+        "onSubmit": [Function],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              "Additional Vocabulary Words:",
+              <input
+                id="inputKanji"
+                onChange={[Function]}
+                size="20"
+                type="text"
+                value=""
+              />,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            "Additional Vocabulary Words:",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "id": "inputKanji",
+                "onChange": [Function],
+                "size": "20",
+                "type": "text",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "input",
+            },
+          ],
+          "type": "label",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "type": "submit",
+            "value": "submit",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "input",
+        },
+      ],
+      "type": "form",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__childContext__): null,
+}
+`;

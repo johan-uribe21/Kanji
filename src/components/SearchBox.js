@@ -25,6 +25,7 @@ class SearchBox extends React.Component  {
   render() {
     return (
       <form 
+        id = 'SearchBox'
         className = 'pa3 ba b--green bg-lightest-blue'
         onSubmit = {this.handleSubmit} >
         <label>Additional Vocabulary Words: 

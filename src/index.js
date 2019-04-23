@@ -10,6 +10,7 @@ import 'tachyons';
 import { DefaultList, kanjiReducer } from './reducers/reducers';
 import * as serviceWorker from './serviceWorker';
 
+
 const logger = createLogger();
 
 const rootReducer = combineReducers({DefaultList, kanjiReducer: kanjiReducer}); 

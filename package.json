@@ -1,6 +1,7 @@
 {
   "name": "kanji",
   "version": "0.1.0",
+  "homepage": "https://johan-uribe21.github.io/Kanji/",
   "private": true,
   "dependencies": {
     "node-fetch": "^2.3.0",
@@ -29,6 +30,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -42,7 +45,11 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "gh-pages": "^2.0.1",
     "react-redux": "^7.0.2",
+    "react-test-renderer": "^16.8.6",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
