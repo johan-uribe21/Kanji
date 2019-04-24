@@ -10,7 +10,6 @@ class MainPage extends Component {
   constructor(){
     super();
     this.state = {}
-
     // binds the method so that 'this' always refers to app class. Better than arrow functions.
     this.populateInitialList = this.populateInitialList.bind(this);
     this.onClickDelete = this.onClickDelete.bind(this);

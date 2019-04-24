@@ -1,6 +1,4 @@
 import React from 'react';
-import {shallow, mount, render,configure} from 'enzyme';
-
 
 const Kanji = ({word, kanji, onClickDelete}) => {
   return (

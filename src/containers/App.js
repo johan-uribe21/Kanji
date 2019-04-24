@@ -22,28 +22,9 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 class App extends Component {
-  constructor(){
-    super();
-    this.state = {
-      // default list of kanji wordList 
-      timeElapsed: 0, // the amount of time elapsed since user started game
-      correctMatches: 0, // the number of correct matches so far
-      isLoaded: false,
-    }
-
-    
-  };
-  
-
-  // this call is no longer asynchronos because that has been moved into the 
-  // actions, and is now hanlded by reduce and redux-thunk.
- 
-
-
- 
   render() {
     return (
-        <MainPage />
+        <MainPage {...this.props}/>
       )
   }
 };
