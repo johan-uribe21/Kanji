@@ -10,7 +10,6 @@ describe('Component render, state updates onChange, and redux action onSubmit', 
     expect(shallow(<SearchBox />)).toMatchSnapshot();
   });
 
-
   it('updates the state when value is typed into search box', () => {
     const event = {
       preventDefault() {},
