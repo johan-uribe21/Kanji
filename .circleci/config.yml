@@ -6,7 +6,7 @@ jobs:
     environment:
       FOO: bar
     parallelism: 3
-    resource_class: large
+    resource_class: medium
     working_directory: ~/my-app
     branches:
       only:
